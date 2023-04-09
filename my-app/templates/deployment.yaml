@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-kube-clinic-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      containers:
+      - name: nginx
+        image: {{ index .Values.images 0 "name" }}:{{ index .Values.images 0 "tag" }}
+        ports:
+        - containerPort: 80
+      - name: php-fpm
+        image: {{ index .Values.images 1 "name" }}:{{ index .Values.images 1 "tag" }}
+        ports:
+        - containerPort: 9000
+      - name: memcached
+        image: {{ index .Values.images 2 "name" }}:{{ index .Values.images 2 "tag" }}
+        ports:
+        - containerPort: 11211
+      - name: redis
+        image: {{ index .Values.images 3 "name" }}:{{ index .Values.images 3 "tag" }}
+        ports:
+        - containerPort: 6379
