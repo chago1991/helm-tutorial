@@ -6,7 +6,7 @@ image:
   pullPolicy: always
 
 service:
-  name: nginx-service
+  name: dotnet-service
   type: ClusterIP
   port: 5000
   targetPort: 80
