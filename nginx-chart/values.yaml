@@ -1,15 +1,15 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  tag: "1.16.0"
-  pullPolicy: IfNotPresent
+  repository: chago19911/dotnet-api
+  tag: "latest"
+  pullPolicy: always
 
 service:
   name: nginx-service
   type: ClusterIP
   port: 80
-  targetPort: 9000
+  targetPort: 80
 
 env:
   name: dev
